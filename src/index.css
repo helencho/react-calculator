@@ -1,0 +1,41 @@
+/* Main body styles
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+p {
+  padding: 0;
+  margin: 0; 
+}
+
+/* Output screen 
+*/ 
+.expression {
+  background-color: rgba(11, 11, 11, 0.2);
+  height: 80px;
+}
+
+.value {
+  background-color: rgba(11, 11, 11, 0.103);
+  height: 50px;
+}
+
+
+/* Buttons and Button Container
+*/ 
+.buttons-container {
+  display: flex;
+}
+
+button {
+  outline: none;
+  border: 1px solid black;
+  height: 60px;
+  width: 60px;
+  background-color: rgb(255, 255, 255); 
+  margin: 2px;
+}
