@@ -12,6 +12,7 @@ class App extends Component {
   constructor() {
     super()
     this.inner = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '.', '0', '=']
+    this.operators = ['/', '*', '+', '-']
     // this.outer = ['DEL', '/', '*', '-', '+'] // how do I use ÷ (/) or x (*) ? 
     this.state = {
       clearOrDelete: 'DEL',
@@ -48,10 +49,10 @@ class App extends Component {
 
       // When user clicks on DEL sign 
     } else if (clickedValue === 'DEL' || clickedValue === 'Backspace') {
+      // Slice the last element of the expression and assign to newExpression 
       newExpression = expression.slice(0, expression.length - 1)
-      console.log('new expression: ' + newExpression)
 
-      // If newExpression is blank  
+      // And if this new expression is blank  
       if (!newExpression) {
         this.setState({
           expression: newExpression,
@@ -72,7 +73,10 @@ class App extends Component {
           expression: newExpression
         })
       }
+
+      // When user clicks on CLR sign 
     } else if (clickedValue === 'CLR' || clickedValue === 'Backspace') {
+      // Switch the CLR button to DEL button and clear the screen 
       this.setState({
         clearOrDelete: 'DEL',
         expression: '',
@@ -92,11 +96,27 @@ class App extends Component {
 
       // When user clicks on anything other than the 3 types listed above 
     } else {
-      newExpression = expression + clickedValue
+      let lastValueOfExp = expression[expression.length - 1]
+      
+      // If clicked value is an operator 
+      if (this.operators.includes(clickedValue)) {
 
-      this.setState({
-        expression: newExpression
-      })
+        // Check to see that the last value of expression is NOT an operator 
+        if (!this.operators.includes(lastValueOfExp)) {
+          newExpression = expression + clickedValue
+          this.setState({
+            expression: newExpression
+          })
+        }
+
+      } else {
+        // Otherwise, add to the string 
+        newExpression = expression + clickedValue
+
+        this.setState({
+          expression: newExpression
+        })
+      }
     }
   }
 
@@ -124,7 +144,7 @@ class App extends Component {
 
     return (
       <div className='calculator-container' onKeyDown={this.handleKeyPress} tabIndex='0'>
-      
+
         <form className='calculator'>
           <div className='expression'>
             <p>{expression}</p>
