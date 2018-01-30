@@ -29,7 +29,14 @@ class App extends Component {
   // Take in ÷ for divide 
   evaluate = exp => {
     try {
-      return eval(exp)
+      let ans = eval(exp)
+
+      if (ans.toString().length > 17) {
+        return ans.toPrecision(9)
+      } 
+
+      return ans
+      
     } catch (e) {
       return NaN
     }
@@ -141,6 +148,7 @@ class App extends Component {
           }, 300)
         })
 
+
         // When user clicks on anything other than the 3 types listed above 
       } else {
         let lastValueOfExp = expression[expression.length - 1]
@@ -175,6 +183,7 @@ class App extends Component {
         }
       }
     }
+
 
   }
 
@@ -212,7 +221,7 @@ class App extends Component {
 
     const grab = () => {
       let targetClassName = `circle-${clickedValue}`
-      
+
     }
 
     console.log(this.state)
