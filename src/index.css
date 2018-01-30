@@ -1,10 +1,12 @@
-/* Fonts
-*/ 
+/*---------------------------------------------------------------//
+//                             Fonts                             //
+//---------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
 
-/* Main body styles
-*/
+/*---------------------------------------------------------------//
+//                       Main Body Styles                        //
+//---------------------------------------------------------------*/
 body {
   margin: 0;
   padding: 0;
@@ -18,6 +20,10 @@ p {
   margin: 0; 
 }
 
+
+/*---------------------------------------------------------------//
+//                       Main Calculator Styles                  //
+//---------------------------------------------------------------*/
 .calculator-container {
   height: 100vh;
   width: 100vw; 
@@ -32,8 +38,9 @@ p {
 }
 
 
-/* Output screen 
-*/ 
+/*---------------------------------------------------------------//
+//                        Output Screen                          //
+//---------------------------------------------------------------*/ 
 .expression,
 .value {
   background-color: rgb(254, 254, 254);
@@ -43,6 +50,8 @@ p {
   text-align: right;
   width: 240px;
   font-size: 2.4rem;
+  overflow: hidden; 
+  transition: 0.2s all;
 }
 
 .expression p {
@@ -61,12 +70,24 @@ p {
   padding: 0.2rem 1rem;
 }
 
+.expression-medium {
+  font-size: 1.8rem;
+}
 
-/* Buttons and Button Container
-*/ 
+.expression-small {
+  font-size: 1.5rem;
+}
+
+.expression-xsmall {
+  font-size: 1.4rem;
+}
+
+
+/*---------------------------------------------------------------//
+//                Buttons and Button Container                   //
+//---------------------------------------------------------------*/
 .buttons-container {
   display: flex;
-  /* flex-direction: column; */
   width: 240px;
 }
 
@@ -102,3 +123,49 @@ button {
   color: white;
   height: 20%;
 }
+
+/*---------------------------------------------------------------//
+//                        Button Animation                       //
+//---------------------------------------------------------------*/
+@keyframes circleGrow {
+  0% {
+    background-color: rgba(255, 0, 0, 0.3);
+    height: 0px;
+    width: 0px;
+  }
+
+  100% {
+    background-color: rgba(255, 0, 0, 0);
+    height: 80px;
+    width: 80px;
+  }
+}
+
+.circle {
+  height: 70px;
+  width: 70px;
+  border-radius: 100%;
+  transform: scale(0.0);
+  transition: all 0.3s ease-in;
+  position: absolute;
+}
+
+.button-circle {
+  transform: scale(1);
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+/* .button-circle {
+  border-radius: 100%;
+  animation: circleGrow 0.3s ease-out;
+  margin: 20px auto;
+  position: fixed;
+} */
+
+/* .temp {
+  background-color: rgba(255, 0, 0, 0.37);
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  position: fixed;
+} */
