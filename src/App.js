@@ -202,13 +202,18 @@ class App extends Component {
   }
 
   render() {
-    const { clearOrDelete, expression, value } = this.state
+    const { clearOrDelete, expression, value, clickedValue } = this.state
 
     // Add class to expression div depending on the length of expression 
     const expressionClass = this.checkLength()
 
     // Add class to key button depending on current button/key press 
     const keyClass = this.buttonAnimation()
+
+    const grab = () => {
+      let targetClassName = `circle-${clickedValue}`
+      
+    }
 
     console.log(this.state)
 
@@ -231,14 +236,16 @@ class App extends Component {
               <button value={clearOrDelete} onClick={this.handleButtonClick} >{clearOrDelete}</button>
 
               {/* <div className={`circle circle-/ ${keyClass}`}></div> */}
-              <button value='/' onClick={this.handleButtonClick}>÷</button>              
+              <button value='/' onClick={this.handleButtonClick}>÷</button>
               <button value='*' onClick={this.handleButtonClick}>x</button>
               <button value='+' onClick={this.handleButtonClick}>+</button>
+
+              {/* <div className={`circle circle-- ${keyClass}`}></div> */}
               <button value='-' onClick={this.handleButtonClick}>-</button>
             </div>
           </div>
 
-          <div className={`circle ${keyClass}`}></div>
+          {/* <div className={`circle ${keyClass}`}></div> */}
 
 
         </form>
