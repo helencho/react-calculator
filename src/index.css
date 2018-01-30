@@ -1,10 +1,16 @@
+/* Fonts
+*/ 
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+
 /* Main body styles
 */
-
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
 }
 
 p {
@@ -12,16 +18,47 @@ p {
   margin: 0; 
 }
 
+.calculator-container {
+  height: 100vh;
+  width: 100vw; 
+  display: flex;
+}
+
+.calculator {
+  height: 370px; /* 80 + 50 + 240 */
+  margin: 0 auto;
+  margin-top: 2.2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+
 /* Output screen 
 */ 
+.expression,
+.value {
+  background-color: rgb(254, 254, 254);
+}
 .expression {
-  background-color: rgba(11, 11, 11, 0.2);
   height: 80px;
+  text-align: right;
+  width: 240px;
+  font-size: 2.4rem;
+}
+
+.expression p {
+  padding: 1rem;
 }
 
 .value {
-  background-color: rgba(11, 11, 11, 0.103);
   height: 50px;
+  text-align: right;
+  width: 240px;
+  font-size: 1.4rem;
+  color: rgb(122, 122, 122);
+}
+
+.value p {
+  padding: 0.2rem 1rem;
 }
 
 
@@ -29,13 +66,39 @@ p {
 */ 
 .buttons-container {
   display: flex;
+  /* flex-direction: column; */
+  width: 240px;
 }
 
 button {
   outline: none;
-  border: 1px solid black;
+  border: none;
   height: 60px;
   width: 60px;
   background-color: rgb(255, 255, 255); 
-  margin: 2px;
+  font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.numbers {
+  height: 240px;
+  width: 180px;
+}
+
+.numbers button {
+  background-color: rgb(50, 50, 50);
+  color: white;
+}
+
+.operations {
+  height: 240px;
+  width: 60px;
+}
+
+.operations button {
+  background-color: rgb(90, 90, 90);
+  color: white;
+  height: 20%;
 }

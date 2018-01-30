@@ -31,28 +31,35 @@ class App extends Component {
     }
   }
 
-  handleButtonClick = e => {
-    // Prevent from refreshing the page 
-    e.preventDefault()
-
+  checkKeyForExpression = clickedValue => {
     const { expression, value } = this.state
-    let clickedValue = e.target.value
+
     let newExpression
 
     // When user clicks on equals sign 
-    if (clickedValue === '=') {
-      this.setState({
-        clearOrDelete: 'CLR',
-        expression: value.toString(),
-        value: ''
-      })
+    if (clickedValue === '=' || clickedValue === 'Enter' || clickedValue === '=') {
+      if (value) {
+        this.setState({
+          clearOrDelete: 'CLR',
+          expression: value.toString(),
+          value: ''
+        })
+      }
 
       // When user clicks on DEL sign 
-    } else if (clickedValue === 'DEL') {
+    } else if (clickedValue === 'DEL' || clickedValue === 'Backspace') {
       newExpression = expression.slice(0, expression.length - 1)
+      console.log('new expression: ' + newExpression)
 
-      // If the last element of the new expression is a number, 
-      if (!isNaN(newExpression[newExpression.length - 1])) {
+      // If newExpression is blank  
+      if (!newExpression) {
+        this.setState({
+          expression: newExpression,
+          value: ''
+        })
+
+        // If the last element of the new expression is a number 
+      } else if (!isNaN(newExpression[newExpression.length - 1])) {
         // Evaluate 
         let newValue = this.evaluate(newExpression)
         this.setState({
@@ -65,7 +72,7 @@ class App extends Component {
           expression: newExpression
         })
       }
-    } else if (clickedValue === 'CLR') {
+    } else if (clickedValue === 'CLR' || clickedValue === 'Backspace') {
       this.setState({
         clearOrDelete: 'DEL',
         expression: '',
@@ -93,20 +100,42 @@ class App extends Component {
     }
   }
 
+  handleKeyPress = e => {
+    let clickedValue = e.key
+    // console.log(clickedValue)
+    let allowedKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '*', '-', '+', '/', '.', '=', 'Backspace', 'Enter']
+    if (allowedKeys.includes(clickedValue)) {
+      this.checkKeyForExpression(clickedValue)
+    }
+  }
+
+  handleButtonClick = e => {
+    // Prevent from refreshing the page 
+    e.preventDefault()
+    let clickedValue = e.target.value
+    this.checkKeyForExpression(clickedValue)
+
+  }
+
   render() {
     const { clearOrDelete, expression, value } = this.state
 
     console.log(this.state)
 
     return (
-      <div>
-        <form>
-          <p className='expression'>{expression}</p>
-          <p className='value'>{value}</p>
+      <div className='calculator-container' onKeyDown={this.handleKeyPress} tabIndex='0'>
+      
+        <form className='calculator'>
+          <div className='expression'>
+            <p>{expression}</p>
+          </div>
+          <div className='value'>
+            <p>{value}</p>
+          </div>
           <div className='buttons-container'>
             <Buttons values={this.inner} divName='numbers' handleButtonClick={this.handleButtonClick} />
             <div className='operations'>
-              <button value={clearOrDelete} onClick={this.handleButtonClick}>{clearOrDelete}</button>
+              <button value={clearOrDelete} onClick={this.handleButtonClick} >{clearOrDelete}</button>
               <button value='/' onClick={this.handleButtonClick}>÷</button>
               <button value='*' onClick={this.handleButtonClick}>x</button>
               <button value='+' onClick={this.handleButtonClick}>+</button>
@@ -114,7 +143,6 @@ class App extends Component {
             </div>
           </div>
         </form>
-
 
       </div>
     )
