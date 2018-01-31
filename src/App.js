@@ -33,10 +33,10 @@ class App extends Component {
 
       if (ans.toString().length > 17) {
         return ans.toPrecision(9)
-      } 
+      }
 
       return ans
-      
+
     } catch (e) {
       return NaN
     }
@@ -75,8 +75,8 @@ class App extends Component {
     let newExpression
 
     // When user clicks on equals sign 
-    if (clickedValue === '=' || clickedValue === 'Enter' || clickedValue === '=') {
-      if (value) {
+    if (clickedValue === '=' || clickedValue === 'Enter') {
+      if (value || value === 0) {
         this.setState({
           clearOrDelete: 'CLR',
           expression: value.toString(),
@@ -130,24 +130,53 @@ class App extends Component {
 
       // When user clicks on any number 
       if (!isNaN(clickedValue)) {
-        newExpression = expression + clickedValue
-        let newValue = this.evaluate(newExpression)
+        let lastValueOfExp = expression[expression.length - 1]
 
-        this.setState({
-          clearOrDelete: 'DEL',
-          expression: newExpression,
-          value: newValue,
-          clickedValue: '',
-          keyPress: true
-        }, () => {
-          setTimeout(() => {
-            console.log('Setting timeout!')
+        // If there's no expression yet or if the last value of expression is an operator 
+        if (!expression || this.operators.includes(lastValueOfExp)) {
+
+          // Don't allow user to type 0 
+          if (clickedValue !== '0') {
+            newExpression = expression + clickedValue
+            let newValue = this.evaluate(newExpression)
+
             this.setState({
-              keyPress: false
+              clearOrDelete: 'DEL',
+              expression: newExpression,
+              value: newValue,
+              clickedValue: ''
             })
-          }, 300)
-        })
+          }
+          
+          // Otherwise allow all numbers and operators 
+        } else {
+          newExpression = expression + clickedValue
+          let newValue = this.evaluate(newExpression)
 
+          this.setState({
+            clearOrDelete: 'DEL',
+            expression: newExpression,
+            value: newValue,
+            clickedValue: ''
+          })
+
+
+          // this.setState({
+          //   clearOrDelete: 'DEL',
+          //   expression: newExpression,
+          //   value: newValue,
+          //   clickedValue: '',
+          //   keyPress: true      // This is for button animations later. Ignore for now 
+          // }, () => {
+          //   setTimeout(() => {
+          //     console.log('Setting timeout!')
+          //     this.setState({
+          //       keyPress: false
+          //     })
+          //   }, 300)
+          // })
+
+        }
 
         // When user clicks on anything other than the 3 types listed above 
       } else {
@@ -156,8 +185,8 @@ class App extends Component {
         // If clicked value is an operator 
         if (this.operators.includes(clickedValue)) {
 
-          // Check to see that the last value of expression is NOT an operator 
-          if (!this.operators.includes(lastValueOfExp)) {
+          // Check to see that the expression is filled and last value of expression is NOT an operator 
+          if (expression && !this.operators.includes(lastValueOfExp)) {
             newExpression = expression + clickedValue
             this.setState({
               expression: newExpression,
