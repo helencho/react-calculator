@@ -36,3 +36,4 @@ Try it [live](https://react-calculator.netlify.com/).
 * When user clicks `÷`, show `÷` instead of `/`
 * When user clicks `x`, show `x` instead of `*` 
 * ~~Fix `Return` keypress (currently clears value)~~
+* Sometimes `Return` on multiplication clears the screen 
