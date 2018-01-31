@@ -6,14 +6,17 @@ Look at this Google-y calculator.
 
 
 Calculating on the keyboard.
+
 ![Calculator](./public/images/screen-01.gif)
 
 
 Calculating with the mouse.
+
 ![Calculator](./public/images/screen-02.gif)
 
 
 Text responsiveness.
+
 ![Responsiveness](./public/images/screen-03.gif)
 
 
