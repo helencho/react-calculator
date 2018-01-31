@@ -31,8 +31,8 @@ Try it [live](https://react-calculator.netlify.com/).
 
 ## To do
 * Replace using `eval()`, because eval === evil 
-* Restrict user to `-` and `+` as initial operators 
-* Restrict user to no `0`s as the first input 
+* ~~Restrict operators to come after number input~~
+* ~~Restrict user to no `0`s as the first input~~
 * When user clicks `÷`, show `÷` instead of `/`
 * When user clicks `x`, show `x` instead of `*` 
-* Fix `Return` keypress (currently clears value) 
+* ~~Fix `Return` keypress (currently clears value)~~
