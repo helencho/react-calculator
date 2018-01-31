@@ -23,3 +23,4 @@ Try it [live](https://react-calculator.netlify.com/).
 * Restrict user to no `0`s as the first input 
 * When user clicks `÷`, show `÷` instead of `/`
 * When user clicks `x`, show `x` instead of `*` 
+* Fix `Return` keypress (currently clears value) 
