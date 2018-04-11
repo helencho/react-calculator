@@ -147,7 +147,7 @@ class App extends Component {
               clickedValue: ''
             })
           }
-          
+
           // Otherwise allow all numbers and operators 
         } else {
           newExpression = expression + clickedValue
@@ -287,6 +287,12 @@ class App extends Component {
 
 
         </form>
+
+        <div className='github-logo-container'>
+          <a href='https://github.com/helencho' target='_blank'>
+            <i className="fab fa-github fa-5x"></i>
+          </a>
+        </div>
 
       </div>
     )
