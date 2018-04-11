@@ -289,7 +289,7 @@ class App extends Component {
         </form>
 
         <div className='github-logo-container'>
-          <a href='https://github.com/helencho' target='_blank'>
+          <a href='https://github.com/helencho/react-calculator' target='_blank'>
             <i className="fab fa-github fa-5x"></i>
           </a>
         </div>
